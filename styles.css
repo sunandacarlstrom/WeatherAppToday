@@ -15,8 +15,7 @@ body {
     color: var(--primary-text-color);
     padding: 2rem;
     border-radius: 30px;
-    width: 100%;
-    max-width: 420px;
+
     margin: 1rem;
 }
 
@@ -54,7 +53,20 @@ button:hover {
     width: calc(100% - 120px);
 }
 
-.temp {
-    margin: 0 0 0.4rem 0;
-    font-size: 2rem;
+.overview {
+    display: flex;
+    gap: 1rem;
+    border: solid 1px var(--grey-bg-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    align-items: center;
+}
+.overview:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.day {
+    font-style: italic;
+    text-decoration: underline;
 }
