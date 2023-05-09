@@ -1,4 +1,4 @@
-// Skapa layout på startsidan
+// Skapar layout på startsidan
 const displayCard = () => {
     const search = document.createElement("div");
     search.classList.add("search");
