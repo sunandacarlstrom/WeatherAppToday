@@ -24,7 +24,7 @@ const displayWeatherDetails = () => {
 
     details.innerHTML = `
     <h2 class="city">Vädret i Jönköping, Sverige</h2>
-    <h3 class="temp">18°C</h3>
+    <h1 class="temp">18°C</h1>
     <img src="" alt="" class="icon">
     <h3 class="humidity">Luftfuktighet: 36%</h3>
     <h3 class="wind">Vindhastighet: 5 m/s</h3>

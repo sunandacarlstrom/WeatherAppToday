@@ -1,0 +1,17 @@
+:root {
+    --primary-color: #ef486f;
+    --secondary-color: #4c4e6d;
+    
+    --primary-bg-color: #212529;
+    --secondary-bg-color: #f2f2f2;
+    --grey-bg-color: #221e1f;
+    
+    --primary-text-color: #ecf1f5;
+    --secondary-text-color: #343a40;
+    
+    --primary-light-color: #ee5f80;
+    --secondary-light-color: #88899e;
+    
+    --banner-color: #fab005;
+    --weather-form-color: #4c4e6dc1;
+}

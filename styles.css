@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    background-image: url("https://source.unsplash.com/1600x900/?weather, landscape");
+}
+
+#card {
+    background-color: var(--weather-form-color);
+    color: var(--primary-text-color);
+    padding: 2rem;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 420px;
+    margin: 1rem;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    margin: 0.5rem;
+    border-radius: 80px;
+    border: none;
+    outline: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+}
+
+button:hover {
+    background-color: var(--primary-light-color);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.search-bar {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: 24px;
+    background-color: var(--primary-text-color);
+    font-family: inherit;
+    font-size: 1.1rem;
+    width: calc(100% - 120px);
+}
+
+.temp {
+    margin: 0 0 0.4rem 0; 
+    font-size: 2rem;
+}
