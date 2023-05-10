@@ -18,13 +18,4 @@ const createHTMLElement = (element, classes, text) => {
     return HTMLElement;
 };
 
-const createHTMLElementImage = (classes, url, alt) => {
-    const image = document.createElement("img");
-    image.classList.add(classes);
-    image.src = url;
-    image.alt = alt;
-
-    return image;
-};
-
-export { createHTMLElement, createHTMLElementImage };
+export default createHTMLElement;
