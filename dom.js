@@ -35,7 +35,7 @@ const displayCard = async () => {
 };
 
 const displayWeatherOverview = (weather) => {
-    const overview = createHTMLElement("div", "weather loading");
+    const overview = createHTMLElement("div", "weather");
 
     const overviewContainer = createHTMLElement("div", "overview");
     const day = createHTMLElement("h2", "day", "Idag");
