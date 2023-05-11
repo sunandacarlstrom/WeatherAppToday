@@ -68,9 +68,13 @@ button:hover {
     align-items: center;
 }
 
-.overview:hover {
+.hover:hover {
     background-color: var(--primary-color);
     cursor: pointer;
+}
+
+.filled-primary-color{
+    background-color: var(--primary-color);
 }
 
 .day {
@@ -140,6 +144,13 @@ button:hover {
     .overview {
         display: flex;
         gap: 1rem;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        padding: 1rem 0 1rem 1rem;
     }
 
     .day {

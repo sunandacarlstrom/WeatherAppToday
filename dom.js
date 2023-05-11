@@ -1,5 +1,6 @@
 import createHTMLElement from "./element-helper.js";
-import { displaySearchResultWeather } from "./weather.js";
+import  state  from "./state.js";
+import { displaySearchResultWeather, displaySearchResultForecast } from "./weather.js";
 
 // Skapar layout på sidan
 const displayCard = async () => {
@@ -31,13 +32,20 @@ const displayCard = async () => {
     document.querySelector("#card").appendChild(search);
 
     // Ett standard-sökord visas på startsidan
-    await displaySearchResult("jonkoping");
+    await displaySearchResult();
 };
 
-const displayWeatherOverview = (weather) => {
-    const overview = createHTMLElement("div", "weather");
+const handleClickOnDetails = () => {
+    displaySearchResultForecast();
+}
 
-    const overviewContainer = createHTMLElement("div", "overview");
+const displayWeatherOverview = (weather) => {
+
+    const overview = createHTMLElement("div", "weather");
+    
+    const overviewContainer = createHTMLElement("div", "overview hover");
+    overviewContainer.addEventListener("click", handleClickOnDetails);
+
     const day = createHTMLElement("h2", "day", "Idag");
     const city = createHTMLElement("h2", "city", weather.name);
     const temp = createHTMLElement("h2", "temp", `${weather.temp.toFixed(1)}°C`);
@@ -54,16 +62,47 @@ const displayWeatherOverview = (weather) => {
     document.querySelector("#card").appendChild(overview);
 };
 
-const displaySearchResult = async (city) => {
-    removeCard();
-    await displaySearchResultWeather(city);
+const displayWeatherForecast = (forecast) => {
+
+    const overviewContainer = document.querySelector(".overview");
+    overviewContainer.removeEventListener("click", handleClickOnDetails);
+    overviewContainer.classList.remove("hover");
+    overviewContainer.classList.add("filled-primary-color");
+
+    const weatherContainer = document.querySelector(".weather");    
+
+    forecast.forEach(weather => {
+        const container = createHTMLElement("div", "details")
+
+        const hour = createHTMLElement("span", "", `kl ${weather.date.getHours()}:00`);
+        const temp = createHTMLElement("span", "", `${weather.temp}°C`);
+        const humidity = createHTMLElement("span", "", `${weather.humidity}%`);
+        const wind = createHTMLElement("span", "", `${weather.wind} m/s`);
+        
+
+        container.appendChild(hour);
+        container.appendChild(temp);
+        container.appendChild(humidity);
+        container.appendChild(wind);
+
+        weatherContainer.appendChild(container);
+    });
 };
 
-const removeCard = () => {
-    const div = document.querySelector(".weather");
-    if (div != null) {
-        div.remove();
+const displaySearchResult = async (city) => {
+    removeCard();
+    if(city != null && city != undefined && city != ""){
+        await displaySearchResultWeather(city);
+    }else{
+        await displaySearchResultWeather(state.currentCity);
     }
 };
 
-export { displayCard, displayWeatherOverview };
+const removeCard = () => {
+    const overview = document.querySelector(".weather");
+    if (overview != null) {
+        overview.remove();
+    }
+};
+
+export { displayCard, displayWeatherOverview, displayWeatherForecast };
