@@ -1,5 +1,5 @@
 import { displayWeatherOverview } from "./dom.js";
-import {getCurrentWeatherData, getForecastData} from './http.js';
+import {getWeatherData} from './http.js';
 
 // Skapar en klass för att omvandla datat från API till en egen objektmodell med några egenskaper
 class Weather {
@@ -17,7 +17,7 @@ const createWeather = (data) => {
 };
 
 const displaySearchResultWeather = async (city) => {
-    const data = await getCurrentWeatherData(city);
+    const data = await getWeatherData("weather", city);
     const currentWeather = createWeather(data);
     displayWeatherOverview(currentWeather);
 };
