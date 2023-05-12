@@ -40,7 +40,6 @@ const handleClickOnDetails = () => {
 }
 
 const displayWeatherOverview = (weather) => {
-
     const overview = createHTMLElement("div", "weather");
     
     const overviewContainer = createHTMLElement("div", "overview hover");
@@ -63,7 +62,6 @@ const displayWeatherOverview = (weather) => {
 };
 
 const displayWeatherForecast = (forecast) => {
-
     const overviewContainer = document.querySelector(".overview");
     overviewContainer.removeEventListener("click", handleClickOnDetails);
     overviewContainer.classList.remove("hover");
@@ -75,11 +73,10 @@ const displayWeatherForecast = (forecast) => {
         const container = createHTMLElement("div", "details")
 
         const hour = createHTMLElement("span", "", `kl ${weather.date.getHours()}:00`);
-        const temp = createHTMLElement("span", "", `${weather.temp}°C`);
+        const temp = createHTMLElement("span", "", `${weather.temp.toFixed(1)}°C`);
         const humidity = createHTMLElement("span", "", `${weather.humidity}%`);
         const wind = createHTMLElement("span", "", `${weather.wind} m/s`);
         
-
         container.appendChild(hour);
         container.appendChild(temp);
         container.appendChild(humidity);
