@@ -72,10 +72,10 @@ const displayWeatherForecast = (forecast) => {
     forecast.forEach(weather => {
         const container = createHTMLElement("div", "details")
 
-        const hour = createHTMLElement("span", "", `kl ${weather.date.getHours()}:00`);
-        const temp = createHTMLElement("span", "", `${weather.temp.toFixed(1)}°C`);
-        const humidity = createHTMLElement("span", "", `${weather.humidity}%`);
-        const wind = createHTMLElement("span", "", `${weather.wind} m/s`);
+        const hour = createHTMLElement("span", "forecast", `kl ${weather.date.getHours()}:00`);
+        const temp = createHTMLElement("span", "forecast", `${weather.temp.toFixed(1)}°C`);
+        const humidity = createHTMLElement("span", "forecast", `${weather.humidity}%`);
+        const wind = createHTMLElement("span", "forecast", `${weather.wind} m/s`);
         
         container.appendChild(hour);
         container.appendChild(temp);

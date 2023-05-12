@@ -6,7 +6,6 @@ body {
     margin: 0;
     font-family: "Lato", sans-serif;
     background-image: url("https://source.unsplash.com/1600x900/?weather,landscape");
-    background-repeat: no-repeat;
     background-size: cover;
 }
 
@@ -73,7 +72,7 @@ button:hover {
     cursor: pointer;
 }
 
-.filled-primary-color{
+.filled-primary-color {
     background-color: var(--primary-color);
 }
 
@@ -81,6 +80,11 @@ button:hover {
     font-size: 1rem;
     font-style: italic;
     text-decoration: underline;
+}
+
+.forecast {
+    padding: 0 0.15rem;
+    font-size: 0.7rem;
 }
 
 @media screen and (min-width: 500px) and (max-width: 940px) {
@@ -112,6 +116,11 @@ button:hover {
 
     .day {
         font-size: 1.5rem;
+    }
+
+    .forecast {
+        padding: 1rem 0.5rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -155,5 +164,9 @@ button:hover {
 
     .day {
         font-size: 2rem;
+    }
+
+    .forecast {
+        font-size: 1.5rem;
     }
 }
