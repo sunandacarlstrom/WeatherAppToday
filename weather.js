@@ -11,7 +11,10 @@ class Weather {
         this.humidity = humidity;
         this.wind = wind;
 
-        // Beroende på vilket api man använder weather eller forecast
+        // Beroende på vilket api man använder weather eller forecast.
+        // Om date parametern finns skapas ett Date objekt med det datumet och tiden.
+        // Annars skapas ett Date objekt med det nuvarande datumet och tiden,
+        // altså ett Date objekt med tom parameter, till höger om ":"
         this.date = date != undefined && date != null ? new Date(date) : new Date();
     }
 }
@@ -21,7 +24,7 @@ const createWeather = (data) => {
 };
 
 const displaySearchResultWeather = async (city) => {
-    // Ändrar stad efter sökning, används senare i details nedanför
+    // Uppdaterar stad efter sökning, används senare i forecast nedanför
     state.currentCity = city;
     const data = await getWeatherData("weather", city);
     const currentWeather = createWeather(data);
@@ -29,10 +32,13 @@ const displaySearchResultWeather = async (city) => {
 };
 
 const displaySearchResultForecast = async () => {
-    // Hämtar stad efter sökning, sattes när man sökte efter stad
+    // Hämtar stad efter sökning, uppdaterades när man sökte efter vädret i en stad
+    // datat som retuneras är en array
     const data = await getWeatherData("forecast", state.currentCity);
+    // Skapar en tom array...
     var forecast = [];
-
+    // ...för att nu översätta datat (den array från api) till en array med weather objekt
+    // vill få ut prognosen under ett dygn och hämtar därför endast 9st objekt från arrayen
     for (let i = 0; i < 9; i++) {
         forecast[i] = createWeather(data.list[i]);
     }

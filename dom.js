@@ -1,5 +1,5 @@
 import createHTMLElement from "./element-helper.js";
-import  state  from "./state.js";
+import state from "./state.js";
 import { displaySearchResultWeather, displaySearchResultForecast } from "./weather.js";
 
 // Skapar layout på sidan
@@ -10,7 +10,7 @@ const displayCard = async () => {
     searchBar.type = "text";
     searchBar.placeholder = "Sök på ort";
     searchBar.addEventListener("keyup", async (e) => {
-        if (e.key == "Enter") {
+        if (e.key === "Enter") {
             await displaySearchResult(searchBar.value);
         }
     });
@@ -32,24 +32,24 @@ const displayCard = async () => {
     document.querySelector("#card").appendChild(search);
 
     // Ett standard-sökord visas på startsidan
-    await displaySearchResult();
+    await displaySearchResult(state.currentCity);
 };
 
 const handleClickOnDetails = () => {
     displaySearchResultForecast();
-}
+};
 
 const displayWeatherOverview = (weather) => {
     const overview = createHTMLElement("div", "weather");
-    
+
     const overviewContainer = createHTMLElement("div", "overview hover");
     overviewContainer.addEventListener("click", handleClickOnDetails);
 
-    const day = createHTMLElement("h2", "day", "Idag");
-    const city = createHTMLElement("h2", "city", weather.name);
-    const temp = createHTMLElement("h2", "temp", `${weather.temp.toFixed(1)}°C`);
-    const humidity = createHTMLElement("h2", "humidity", `Luftfuktighet: ${weather.humidity}%`);
-    const wind = createHTMLElement("h2", "wind", `Vindhastighet: ${weather.wind} m/s`);
+    const day = createHTMLElement("h2", "day", `Idag kl ${weather.date.getHours()}:${weather.date.getMinutes()}`);
+    const city = createHTMLElement("h2", "", weather.name);
+    const temp = createHTMLElement("h2", "", `${weather.temp.toFixed(1)}°C`);
+    const humidity = createHTMLElement("h2", "", `Luftfuktighet: ${weather.humidity}%`);
+    const wind = createHTMLElement("h2", "", `Vindhastighet: ${weather.wind} m/s`);
 
     overviewContainer.appendChild(day);
     overviewContainer.appendChild(city);
@@ -67,31 +67,33 @@ const displayWeatherForecast = (forecast) => {
     overviewContainer.classList.remove("hover");
     overviewContainer.classList.add("filled-primary-color");
 
-    const weatherContainer = document.querySelector(".weather");    
+    // för att slippa utföra querySelector 9ggr så sparar vi weatherContainer som en variabel
+    // för att sedan använda den variabeln i forEach-loopen
+    const weatherContainer = document.querySelector(".weather");
+    const detailsContainer = createHTMLElement("div", "detailsContainer");
 
-    forecast.forEach(weather => {
-        const container = createHTMLElement("div", "details")
+    forecast.forEach((weather) => {
+        const container = createHTMLElement("div", "details");
 
         const hour = createHTMLElement("span", "forecast", `kl ${weather.date.getHours()}:00`);
         const temp = createHTMLElement("span", "forecast", `${weather.temp.toFixed(1)}°C`);
         const humidity = createHTMLElement("span", "forecast", `${weather.humidity}%`);
         const wind = createHTMLElement("span", "forecast", `${weather.wind} m/s`);
-        
+
         container.appendChild(hour);
         container.appendChild(temp);
         container.appendChild(humidity);
         container.appendChild(wind);
 
-        weatherContainer.appendChild(container);
+        detailsContainer.appendChild(container);
     });
+    weatherContainer.appendChild(detailsContainer);
 };
 
 const displaySearchResult = async (city) => {
-    removeCard();
-    if(city != null && city != undefined && city != ""){
+    if (city != null && city != undefined && city != "") {
+        removeCard();
         await displaySearchResultWeather(city);
-    }else{
-        await displaySearchResultWeather(state.currentCity);
     }
 };
 
